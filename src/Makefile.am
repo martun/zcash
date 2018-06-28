@@ -107,7 +107,13 @@ LIBZCASH_H = \
   zcash/prf.h \
   zcash/Proof.hpp \
   zcash/util.h \
-  zcash/Zcash.h
+  zcash/Zcash.h \
+  zcash/bulletproofs/include/Generator.h \
+  zcash/bulletproofs/include/GeneratorVector.h \
+  zcash/bulletproofs/include/InnerProductProof.h \
+  zcash/bulletproofs/include/InnerProductProofVerifier.h \
+  zcash/bulletproofs/include/InnerProductProoveGenerator.h \
+  zcash/bulletproofs/include/utils.h
 
 .PHONY: FORCE collate-libsnark check-symbols check-security
 # bitcoin core #
@@ -531,7 +537,11 @@ libzcash_a_SOURCES = \
   zcash/circuit/merkle.tcc \
   zcash/circuit/note.tcc \
   zcash/circuit/prfs.tcc \
-  zcash/circuit/utils.tcc
+  zcash/circuit/utils.tcc \
+  zcash/bulletproofs/Generator.cpp \
+  zcash/bulletproofs/GerneratorVector.cpp \
+  zcash/bulletproofs/InnerProductProoveGenerator.cpp \
+  zcash/bulletproofs/utils.cpp
 
 libzcash_a_CPPFLAGS = -fPIC -DBINARY_OUTPUT -DCURVE_ALT_BN128 -DBOOST_SPIRIT_THREADSAFE -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS $(HARDENED_CPPFLAGS) $(HARDENED_CXXFLAGS) $(HARDENED_LDFLAGS) -pipe $(SAN_LDFLAGS) -O1 -g -Wstack-protector $(SAN_CXXFLAGS) -fstack-protector-all -fPIE -fvisibility=hidden -DSTATIC $(BITCOIN_INCLUDES)
 

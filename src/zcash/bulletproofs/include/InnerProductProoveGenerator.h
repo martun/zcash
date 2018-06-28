@@ -1,12 +1,14 @@
-#ifndef ZCASH_INNERPRODUCTPROOVER_H
-#define ZCASH_INNERPRODUCTPROOVER_H
+#ifndef ZCASH_INNERPRODUCTPROOFVERIFIER_H
+#define ZCASH_INNERPRODUCTPROOFVERIFIER_H
 
 #include <iostream>
 #include <vector>
+#include <secp256k1/include/secp256k1.h>
 #include "secp256k1/src/group.h"
 #include "secp256k1/src/scalar.h"
 #include "secp256k1/src/ecmult.h"
-#include "secp256k1/src//scalar_4x64.h"
+
+namespace bulletproofs {
 
 class InnerProductProoveGenerator {
     InnerProductProoveGenerator(
@@ -32,6 +34,20 @@ class InnerProductProoveGenerator {
             const secp256k1_scalar& c,
             secp256k1_ge& result_out);
 
+    void l( const std::vector<secp256k1_scalar>::const_iterator& a_start,
+            const std::vector<secp256k1_scalar>::const_iterator& a_end,
+            const std::vector<secp256k1_scalar>::const_iterator& b_start,
+            const std::vector<secp256k1_scalar>::const_iterator& b_end,
+            const secp256k1_scalar& cL,
+            secp256k1_ge& result_out);
+
+    void r( const std::vector<secp256k1_scalar>::const_iterator& a_start,
+            const std::vector<secp256k1_scalar>::const_iterator& a_end,
+            const std::vector<secp256k1_scalar>::const_iterator& b_start,
+            const std::vector<secp256k1_scalar>::const_iterator& b_end,
+            const secp256k1_scalar& cR,
+            secp256k1_ge& result_out);
+
 private:
     const GerneratorVector& g_;
     const GerneratorVector& h_;
@@ -39,5 +55,5 @@ private:
     const secp256k1_ge& P_;
 
 };
-
+} // namespace bulletproofs
 #endif //ZCASH_INNERPRODUCTPROOVER_H
