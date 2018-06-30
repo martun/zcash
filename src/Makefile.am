@@ -108,7 +108,6 @@ LIBZCASH_H = \
   zcash/Proof.hpp \
   zcash/util.h \
   zcash/Zcash.h \
-  zcash/bulletproofs/include/Generator.h \
   zcash/bulletproofs/include/GeneratorVector.h \
   zcash/bulletproofs/include/InnerProductProof.h \
   zcash/bulletproofs/include/InnerProductProofVerifier.h \
@@ -538,8 +537,7 @@ libzcash_a_SOURCES = \
   zcash/circuit/note.tcc \
   zcash/circuit/prfs.tcc \
   zcash/circuit/utils.tcc \
-  zcash/bulletproofs/Generator.cpp \
-  zcash/bulletproofs/GerneratorVector.cpp \
+  zcash/bulletproofs/GeneratorVector.cpp \
   zcash/bulletproofs/InnerProductProoveGenerator.cpp \
   zcash/bulletproofs/utils.cpp
 

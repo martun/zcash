@@ -4,7 +4,7 @@
 
 namespace bulletproofs {
 
- // computes dot product of two scalar vectors
+// computes dot product of two scalar vectors
 void scalar_dot_product(const std::vector<secp256k1_scalar> &a,
         const std::vector<secp256k1_scalar> &b,
         secp256k1_scalar *r_out);
