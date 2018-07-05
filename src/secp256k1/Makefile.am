@@ -76,8 +76,8 @@ endif
 
 libsecp256k1_la_SOURCES = 
 libsecp256k1_la_SOURCES += src/secp256k1.c
-libsecp256k1_la_SOURCES += cpp/GroupElement.cpp
-libsecp256k1_la_SOURCES += cpp/Scalar.cpp
+libsecp256k1_la_SOURCES += src/cpp/GroupElement.cpp
+libsecp256k1_la_SOURCES += src/cpp/Scalar.cpp
 
 libsecp256k1_la_CPPFLAGS = -DSECP256K1_BUILD -I$(top_srcdir)/include -I$(top_srcdir)/src $(SECP_INCLUDES)
 libsecp256k1_la_LIBADD = $(JNI_LIB) $(SECP_LIBS) $(COMMON_LIB)

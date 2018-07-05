@@ -23,7 +23,13 @@ if test "x$CFLAGS" = "x"; then
   CFLAGS="-g"
 fi
 
+
 AM_PROG_CC_C_O
+
+AC_PROG_CXX([gcc cl KCC CC cxx cc++ xlC aCC c++ g++])
+
+
+CXXFLAGS="-g -O2"
 
 AC_PROG_CC_C89
 if test x"$ac_cv_prog_cc_c89" = x"no"; then

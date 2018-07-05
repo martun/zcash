@@ -1,28 +1,35 @@
 #ifndef ZCASH_GENERATORVECTOR_H
 #define ZCASH_GENERATORVECTOR_H
 
+#include <iostream>
+#include <vector>
+#include <secp256k1/include/Scalar.h>
+#include <secp256k1/include/GroupElement.h>
+
 namespace bulletproofs {
-class GerneratorVector {
+class GeneratorVector {
 public:
-    Gernerator(const std::vector<secp256k1_ge>& generators, int precomp = 32);
+    GeneratorVector(const std::vector<GroupElement>& generators, int precomp = 32);
 
     /**
      * \param[in] power The power of g which we want to compute.
      * \param[out] result_out The result of computation.
      * \returns g^power in output parameter result_out.
      */
-    void get_vector_multiply(
+    void get_vector_multiple(
             int range_start,
             int range_end,
-            const std::vector<secp256k1_scalar>::const_iterator& power_start,
-            const std::vector<secp256k1_scalar>::const_iterator& power_end,
-            secp256k1_ge& result_out) const;
+            std::vector<Scalar>::const_iterator& power_start,
+            std::vector<Scalar>::const_iterator& power_end,
+            GroupElement& result_out) const;
 
-    const Generator& get_g(int i) const;
+    const GroupElement& get_g(int i) const;
+
+    int size() const;
 
 private:
     // powers_of_g_[i] = g^(2^i).
-    std::vector<Generator> generators_;
+    std::vector<std::vector<GroupElement>> generators_;
 };
 
 } // namespace bulletproofs

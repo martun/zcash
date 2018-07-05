@@ -2,25 +2,50 @@
 #define SCALAR_H__
 
 #include <stdint.h>
+#include <memory>
+#include "secp256k1.h"
+#include "../src/util.h"
+#include "../src/scalar.h"
 
-class secp256k1_scalar;
-
+namespace bulletproofs {
 // A wrapper over scalar value of Secp library.
-class Scalar {
-public:
+    class Scalar {
+    public:
 
-	// Constructor from interger.
-	Scalar(uint64_t value);
+        Scalar();
+        // Constructor from interger.
+        Scalar(uint64_t value);
 
-  // Constructor from secp object.
-	Scalar(const secp256k1_scalar& value);
+        // Constructor from secp object.
+        Scalar(const secp256k1_scalar &value);
 
-	// Returns the secp object inside it.
-	const secp256k1_scalar& get_value() const;
+        // Copy constructor
+        Scalar(const Scalar& other);
 
-private:
-	secp256k1_scalar value_;
+        // Move constructor
+        Scalar(Scalar&& other);
 
-};
+        Scalar& operator=(const Scalar& other);
 
+        Scalar& operator=(Scalar&& other) noexcept;
+
+        Scalar& operator=(unsigned int i);
+
+        Scalar operator*(const Scalar& other) const;
+
+        Scalar& operator*=(const Scalar& other);
+
+        Scalar operator+(const Scalar& other) const;
+
+        Scalar& operator+=(const Scalar& other);
+
+        // Returns the secp object inside it.
+        const secp256k1_scalar &get_value() const;
+
+    private:
+        std::unique_ptr <secp256k1_scalar> value_;
+
+    };
+
+}
 #endif // SCALAR_H__
