@@ -39,8 +39,13 @@ namespace bulletproofs {
 
         Scalar& operator+=(const Scalar& other);
 
+        Scalar inverse() const;
+
+        Scalar square() const;
+
         // Returns the secp object inside it.
         const secp256k1_scalar &get_value() const;
+
 
     private:
         std::unique_ptr <secp256k1_scalar> value_;

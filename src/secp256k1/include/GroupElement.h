@@ -37,6 +37,8 @@ public:
   // Operator for adding to another element.
   GroupElement& operator+=(const GroupElement& other);
 
+  unsigned char* serialize() const;
+
 
 private:
 

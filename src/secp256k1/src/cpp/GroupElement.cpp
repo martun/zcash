@@ -1,5 +1,5 @@
 #include "include/GroupElement.h"
-
+#include <string.h>
 namespace bulletproofs {
 
     GroupElement::GroupElement()
@@ -65,6 +65,12 @@ namespace bulletproofs {
     {
         secp256k1_gej_add_var(g_.get(), g_.get(), &(*other.g_), NULL);
         return *this;
+    }
+
+    unsigned char* GroupElement::serialize() const {
+        unsigned char* data = new unsigned char[ 2 * sizeof(secp256k1_fe)];
+        memcpy(data, g_->x.n, sizeof(secp256k1_fe));
+        memcpy(data + sizeof(secp256k1_fe), g_->y.n, sizeof(secp256k1_fe));
     }
 
 }
